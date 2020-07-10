@@ -1,23 +1,18 @@
+
 import React, { useState } from 'react';
 import './App.css';
-import PersonCard from './components/PersonCard';
-import UserForm from './components/UserForm';
-import FormData from './components/FormData';
+import UserForm from "./components/UserForm"
+import FormData from "./components/FormData"
 
 function App() {
-  const [state, setState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirm: "",
-  });
+
+  const [users, setUsers] = useState([])
 
   return (
-    <>
-      <UserForm inputs={state} setInputs={setState}></UserForm>
-      <FormData inputs={state}></FormData>
-    </>
+    <div className="App container">
+      <UserForm users={users} setUsers={setUsers} />
+      <FormData inputs={users}></FormData>
+    </div>
   );
 }
 
