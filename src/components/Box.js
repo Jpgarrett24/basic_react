@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React from "react"
 
 const Box = (props) => {
-    const { color, height, width } = props.box;
-
+    const { color, width, height } = props.box;
     return (
-        <>
-            <section style={{
-                backgroundColor: color,
-                height: height,
-                width: width,
-                display: "inline-block",
-                margin: "1%"
-            }}></section>
-        </>
+        <div style={{
+            backgroundColor: color,
+            width: width,
+            height: height,
+            display: "inline-block",
+            margin: "5px",
+        }}></div>
     )
 }
-
-export default Box;
+export default Box
