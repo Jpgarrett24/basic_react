@@ -2,8 +2,7 @@ import React, { useState } from "react"
 
 const BoxForm = (props) => {
     const { boxes, setBoxes } = props
-    const [color, setColor] = useState('hello')
-    const [size, setSize] = useState('30')
+    const [inputs, setInputs] = useState({ color: "", size: "" })
 
     let box = {
         color: "",
@@ -12,32 +11,31 @@ const BoxForm = (props) => {
     };
 
     const newColor = (event) => {
-        box.color = event.target.value;
-        setColor(event.target.value);
+        setInputs({ ...inputs, color: event.target.value });
     };
 
     const newSize = (event) => {
-        box.width = `${event.target.value}px`;
-        box.height = `${event.target.value}px`;
-        setSize(event.target.value);
+        setInputs({ ...inputs, size: event.target.value });
     };
 
+    console.log(inputs);
+
     const handleSubmit = (event) => {
-        console.log(box);
         event.preventDefault();
+        box.color = inputs.color;
+        [box.width, box.height] = [`${inputs.size}px`, `${inputs.size}px`]
         setBoxes([...boxes, box]);
-        setColor("");
-        setSize("");
+        setInputs({ color: "", size: "" })
     }
 
 
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="color">Color:</label>
-            <input id="color" onChange={newColor} type="text" value={color}></input>
+            <input id="color" onChange={newColor} type="text" value={inputs.color}></input>
             <br />
             <label htmlFor="size">Size: </label>
-            <input id="size" onChange={newSize} type="number" value={size}></input>
+            <input id="size" onChange={newSize} type="number" value={inputs.size}></input>
             <br />
             <button>Add</button>
         </form >
