@@ -1,17 +1,20 @@
-
 import React, { useState } from 'react';
 import './App.css';
-import UserForm from "./components/UserForm"
-import FormData from "./components/FormData"
+import BoxForm from "./components/BoxForm.js";
+import Box from "./components/Box.js";
 
 function App() {
 
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
+
+  const [boxes, setBoxes] = useState([]);
 
   return (
     <div className="App container">
-      <UserForm users={users} setUsers={setUsers} />
-      <FormData inputs={users}></FormData>
+      <BoxForm boxes={boxes} setBoxes={setBoxes}></BoxForm>
+      {boxes.map((box, idx) => {
+        return (<Box key={idx} box={box} />)
+      })}
     </div>
   );
 }
